@@ -8,11 +8,11 @@ const mensajesSchema = new normalizr.schema.Entity("mensajes", {
 });
 
 const crearProducto = () => {
-  const title = document.getElementById("title").value;
-  const price = document.getElementById("price").value;
-  const thumbnail = document.getElementById("thumbnail").value;
+  const nombre = document.getElementById("title").value;
+  const precio = document.getElementById("price").value;
+  const fotoUrl = document.getElementById("thumbnail").value;
 
-  const producto = { title, price, thumbnail }
+  const producto = { nombre, precio, fotoUrl }
 
   socket.emit("agregarProducto", producto);
   return false;
@@ -27,9 +27,9 @@ socket.on("leerProductos", (productos) => {
       let producto = productos[i];
       let productoHTML = `
            <tr>
-           	<td>${producto.title}</td>
-           	<td>${producto.price}</td>
-           	<td><img style="width: 50px; height:50px" src=${thumbnail} alt=""></td>
+           	<td>${producto.nombre}</td>
+           	<td>${producto.precio}</td>
+           	<td><img style="width: 50px; height:50px" src=${producto.fotoUrl} alt=""></td>
            </tr>
            `;
       document.getElementById("tbodyProductos").innerHTML += productoHTML;

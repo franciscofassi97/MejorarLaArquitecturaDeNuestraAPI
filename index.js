@@ -50,7 +50,7 @@ app.use(session({
 
 
 //Passport 
-const passport = require('./passport')
+const passport = require('./utils/auth/passport')
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -80,10 +80,6 @@ app.set("views", "./views");
 /*
 Uso de reutas dinamicas -----> https://github.com/leifermendez/node-seed-api/blob/main/app/routes/index.js
 */
-app.get("/datos", (req, res) => {
-	res.send(`puero corriendo es ${PORT}`)
-});
-
 
 // app.use('/api', require('./routers'))
 
@@ -91,9 +87,11 @@ app.get("/", (req, res) => {
 	res.redirect("/api/productos");
 });
 
-const routerUsuario = require('./modules/usuario/usuariosRoutes')
+const routerUsuario = require('./modules/usuario/usuariosRoutes');
+const routerProductos = require('./modules/productos/productosRouter');
 
-app.use("/api/usuarios", routerUsuario)
+app.use("/api/usuarios", routerUsuario);
+app.use("/api/productos", routerProductos);
 // app.use((error, req, res, next) => {
 // 	winston.error(error.message)
 // 	res.status(500).send(error.message);

@@ -1,5 +1,5 @@
 const ContenedorMongo = require("../../contenedores/ContenedorMongo");
-const Mensajes = require("../../models/Mensajes");
+const Mensajes = require("../../mensajes/mensajesModel");
 
 class ContenedorMensajesMongo extends ContenedorMongo {
 	constructor(schema) {
