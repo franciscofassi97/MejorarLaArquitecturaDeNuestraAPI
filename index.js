@@ -1,4 +1,4 @@
-require("dotenv").config();
+const { PORT, URL_MONGO } = require('./config')
 const express = require('express');
 const cluster = require('cluster');
 const os = require('os');
@@ -10,12 +10,9 @@ const { winstonInfo } = require("./winston/winstonLoger")
 
 const argumentos = require('./yargs');
 const MODO = argumentos.modo;
-const PORT = process.env.PORT || 3000;
 const numeroCpu = os.cpus().length;
 const processID = process.pid;
 
-const connectDB = require('./database');
-connectDB();
 const app = express();
 
 
@@ -40,7 +37,7 @@ app.use(cookieParser());
 
 app.use(session({
 	store: new MongoStore({
-		mongoUrl: process.env.MONGO_DB,
+		mongoUrl: URL_MONGO,
 	}),
 	secret: "algunSecreto",
 	resave: true,
@@ -88,12 +85,15 @@ app.get("/datos", (req, res) => {
 });
 
 
-app.use('/api', require('./routers'))
+// app.use('/api', require('./routers'))
 
 app.get("/", (req, res) => {
 	res.redirect("/api/productos");
 });
 
+const routerUsuario = require('./modules/usuario/usuariosRoutes')
+
+app.use("/api/usuarios", routerUsuario)
 // app.use((error, req, res, next) => {
 // 	winston.error(error.message)
 // 	res.status(500).send(error.message);
