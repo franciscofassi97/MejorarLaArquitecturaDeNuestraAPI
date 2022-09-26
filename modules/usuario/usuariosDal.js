@@ -2,7 +2,7 @@
 
 const ContenedorUsuiarosFactory = require('./usuariosFactory');
 
-const contenedor = new ContenedorUsuiarosFactory().createContenedor('MONGO', 'Usuarios')
+const contenedor = new ContenedorUsuiarosFactory().createContenedor('Usuarios')
 
 
 const getUsuariosByIdDal = async (id) => {

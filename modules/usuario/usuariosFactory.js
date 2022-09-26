@@ -2,15 +2,18 @@ const UsuariosFirebase = require('../daos/usuarios/usuariosFirebase')
 const UsuariosArchivos = require('../daos/usuarios/usuariosArchivos')
 const UsuariosMongo = require('../daos/usuarios/usuariosMongo')
 
+const { CONTENEDOR } = require('../../config')
+
+
 class ContenedorUsuariosFactory {
 
-  createContenedor(tipoContenedor, nombreSchema) {
-    if (tipoContenedor === 'MONGO') {
+  createContenedor(nombreSchema) {
+    if (CONTENEDOR === 'MONGO') {
       const Usuario = require('../../modules/usuario/usuariosModel');
       return new UsuariosMongo(Usuario);
     }
-    if (tipoContenedor === 'FIREBASE') return new UsuariosFirebase(nombreSchema);
-    if (tipoContenedor === 'ARCHIVOS') return new UsuariosArchivos(nombreSchema);
+    if (CONTENEDOR === 'FIREBASE') return new UsuariosFirebase(nombreSchema);
+    if (CONTENEDOR === 'ARCHIVOS') return new UsuariosArchivos(nombreSchema);
   };
 };
 

@@ -42,7 +42,6 @@ passport.use('iniciarSesion', new LocalStrategy({
 }, async (email, password, callback) => {
   try {
     const user = await getUsurioByEmailService(email);
-    console.log(user)
     if (!user || !await bcrypt.compareSync(password, user.password))
       return callback(null, false, { message: 'Usuario o contraseña incorrectos' });
     callback(null, user);

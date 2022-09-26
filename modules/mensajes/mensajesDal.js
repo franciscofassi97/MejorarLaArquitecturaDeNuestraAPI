@@ -1,7 +1,7 @@
 const definirContenedor = require('../daos')
 
 const ContenedorMensajesFactory = require('./mensajesFactory');
-const contenedor = new ContenedorMensajesFactory().createContenedor('MONGO', 'Mensajes')
+const contenedor = new ContenedorMensajesFactory().createContenedor('Mensajes')
 
 
 const agregarMensaje = async (mensaje) => {
