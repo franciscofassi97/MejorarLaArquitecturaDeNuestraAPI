@@ -16,17 +16,15 @@ const createUsuarioService = async (usuario) => {
   const newUsuario = await createUsuarioDal(usuario);
   // if (newUsuario) sendEmailOnRegistro();
   return newUsuario;
-}
+};
 
 const getUsuariosByIdService = async (id) => {
   const usuario = await getUsuariosByIdDal(id);
   return usuario;
-}
-
-
+};
 
 module.exports = {
   getUsurioByEmailService,
   createUsuarioService,
   getUsuariosByIdService
-}
+};

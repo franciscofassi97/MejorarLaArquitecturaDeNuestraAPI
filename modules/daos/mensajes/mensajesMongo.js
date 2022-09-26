@@ -7,6 +7,6 @@ class ContenedorMensajesMongo extends ContenedorMongo {
 	}
 }
 
-const contenedorMensajesMongo = new ContenedorMensajesMongo(Mensajes);
+// const contenedorMensajesMongo = new ContenedorMensajesMongo(Mensajes);
 
-module.exports = contenedorMensajesMongo;
+module.exports = ContenedorMensajesMongo;

@@ -14,7 +14,7 @@ const router = express.Router();
 //Login usuario
 router.get('/login', getFormLogin);
 router.post('/login', passport.authenticate(
-  'login',
+  'iniciarSesion',
   {
     failureRedirect: '/api/usuarios/login/error',
     failureMessage: true,
